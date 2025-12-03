@@ -7,18 +7,18 @@
     <title>ProVideo AI Studio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      // Polyfill for process.env to prevent crashes in browser
+      // Polyfill for process.env
       window.process = { env: { API_KEY: '' } };
     </script>
     <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@18.3.1",
-    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "react": "https://esm.sh/react@18.2.0",
+    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
     "@google/genai": "https://esm.sh/@google/genai@0.1.1",
     "lucide-react": "https://esm.sh/lucide-react@0.408.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.1/",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/"
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/"
   }
 }
 </script>
@@ -29,12 +29,11 @@
   </head>
   <body class="bg-[#0D0D0D] text-white overflow-hidden">
     <div id="root" class="h-full w-full"></div>
-    <!-- Simple error handler if React fails to load -->
     <script>
       window.addEventListener('error', function(e) {
-        if (document.getElementById('root').innerHTML === '') {
+        // Simple fallback error logging
+        if (!document.getElementById('root').hasChildNodes()) {
            console.error("App failed to mount:", e.error);
-           // Optional: You could show a visible error message here if needed
         }
       });
     </script>

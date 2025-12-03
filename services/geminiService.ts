@@ -100,7 +100,9 @@ export const generateCaptions = async (videoBlob: Blob): Promise<Caption[]> => {
   if (!text) return [];
   
   try {
-      return JSON.parse(text) as Caption[];
+      // Clean potential markdown code blocks
+      const cleanedText = text.replace(/```json/g, '').replace(/```/g, '').trim();
+      return JSON.parse(cleanedText) as Caption[];
   } catch (e) {
       console.error("Failed to parse captions JSON", e);
       return [];
